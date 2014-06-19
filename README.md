@@ -18,6 +18,55 @@ Or install it yourself as:
 
 ## Usage
 
+### jQuery Timepicker Addon
+
+Add to your `app/assets/javascripts/application.js`
+
+``` js
+//= require jquery-timepicker-addon
+//= require jquery.ui.datepicker-zh-TW
+//= require jquery-timepicker-addon/i18n/jquery-ui-timepicker-zh-TW
+```
+
+Add to your `app/assets/stylesheets/application.css`
+
+``` css
+*= require jquery-timepicker-addon
+```
+
+Enable with your `datetime.js.coffee`
+
+``` coffee
+$ ->
+  $('.datepicker').datepicker
+    dateFormat: 'yy-mm-dd'
+    changeMonth: true
+    changeYear: true
+
+  $('.timepicker').timepicker(
+    timeFormat: 'HH:mm:ss z'
+    hourGrid: 4
+    minuteGrid: 10
+    secondGrid: 10
+    showSecond: true
+    showTimezone: true
+  ).click ->
+    default_time = new Date($(this).val())
+    $(this).timepicker 'setDate', default_time
+
+  $('.datetimepicker').datetimepicker(
+    dateFormat: 'yy-mm-dd'
+    timeFormat: 'HH:mm:ss z'
+    hourGrid: 4
+    minuteGrid: 10
+    secondGrid: 10
+    showSecond: true
+    showTimezone: true
+  ).click ->
+    default_date = new Date($(this).val())
+    $(this).datetimepicker 'setDate', default_date
+```
+
 ## Contributing
 
 1. Fork it ( https://github.com/[my-github-username]/golden-datetimepicker/fork )
