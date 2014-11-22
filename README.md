@@ -90,6 +90,18 @@ Require it in your `app/assets/javascripts/application.js`
 //= require datetime
 ```
 
+Set class in your input field and show as localtime.
+
+``` ruby
+<%= f.input :available_at,
+  as: :string,
+  input_html: {
+    value: f.object.available_at.try(:localtime),
+    class: 'datetimepicker'
+  } %>
+```
+Here uses [simple_form](https://github.com/plataformatec/simple_form) as form builder.
+
 ## Contributing
 
 1. Fork it ( https://github.com/[my-github-username]/golden-datetimepicker/fork )
