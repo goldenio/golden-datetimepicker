@@ -20,51 +20,74 @@ Or install it yourself as:
 
 ### jQuery Timepicker Addon
 
-Add to your `app/assets/javascripts/application.js`
+Add `datetime.css.sass`
 
-``` js
+``` sass
 //= require jquery-timepicker-addon
-//= require jquery.ui.datepicker-zh-TW
-//= require jquery-timepicker-addon/i18n/jquery-ui-timepicker-zh-TW
+
+.ui-datepicker
+  z-index: 999999 !important
+  select
+    &.ui-datepicker-month,
+    &.ui-datepicker-year
+      width: auto
+      margin: 0 5px
 ```
 
-Add to your `app/assets/stylesheets/application.css`
+Require it in your `app/assets/stylesheets/application.css`
 
 ``` css
-*= require jquery-timepicker-addon
+*= require datetime
 ```
 
-Enable with your `datetime.js.coffee`
+Add `datetime.js.coffee`
 
 ``` coffee
+#= require jquery-timepicker-addon
+#= require jquery.ui.datepicker-zh-TW
+#= require jquery-timepicker-addon/i18n/jquery-ui-timepicker-zh-TW
+
 $ ->
-  $('.datepicker').datepicker
-    dateFormat: 'yy-mm-dd'
-    changeMonth: true
-    changeYear: true
+  $('body')
+    .on 'click', '.datepicker:not(.hasDatepicker)', ->
+      $(this).datepicker
+        dateFormat: 'yy-mm-dd'
+        changeMonth: true
+        changeYear: true
+      default_date = new Date($(this).val())
+      $(this).datepicker 'setDate', default_date
+      $(this).datepicker 'show'
 
-  $('.timepicker').timepicker(
-    timeFormat: 'HH:mm:ss z'
-    hourGrid: 4
-    minuteGrid: 10
-    secondGrid: 10
-    showSecond: true
-    showTimezone: true
-  ).click ->
-    default_time = new Date($(this).val())
-    $(this).timepicker 'setDate', default_time
+    .on 'click', '.timepicker:not(.hasDatepicker)', ->
+      $(this).timepicker
+        timeFormat: 'HH:mm:ss z'
+        hourGrid: 4
+        minuteGrid: 10
+        secondGrid: 10
+        showSecond: true
+        showTimezone: true
+      default_date = new Date($(this).val())
+      $(this).timepicker 'setDate', default_date
+      $(this).timepicker 'show'
 
-  $('.datetimepicker').datetimepicker(
-    dateFormat: 'yy-mm-dd'
-    timeFormat: 'HH:mm:ss z'
-    hourGrid: 4
-    minuteGrid: 10
-    secondGrid: 10
-    showSecond: true
-    showTimezone: true
-  ).click ->
-    default_date = new Date($(this).val())
-    $(this).datetimepicker 'setDate', default_date
+    .on 'click', '.datetimepicker:not(.hasDatepicker)', ->
+      $(this).datetimepicker
+        dateFormat: 'yy-mm-dd'
+        timeFormat: 'HH:mm:ss z'
+        hourGrid: 4
+        minuteGrid: 10
+        secondGrid: 10
+        showSecond: true
+        showTimezone: true
+      default_date = new Date($(this).val())
+      $(this).datetimepicker 'setDate', default_date
+      $(this).datetimepicker 'show'
+```
+
+Require it in your `app/assets/javascripts/application.js`
+
+``` js
+//= require datetime
 ```
 
 ## Contributing
