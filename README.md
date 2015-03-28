@@ -54,20 +54,25 @@ $ ->
         dateFormat: 'yy-mm-dd'
         changeMonth: true
         changeYear: true
-      default_date = new Date($(this).val())
-      $(this).datepicker 'setDate', default_date
+      date = new Date($(this).val())
+      $(this).datepicker 'setDate', date
       $(this).datepicker 'show'
 
     .on 'click', '.timepicker:not(.hasDatepicker)', ->
       $(this).timepicker
-        timeFormat: 'HH:mm:ss z'
+        timeFormat: 'HH:mm:ss'
         hourGrid: 4
         minuteGrid: 10
         secondGrid: 10
-        showSecond: true
-        showTimezone: true
-      default_date = new Date($(this).val())
-      $(this).timepicker 'setDate', default_date
+        showTimezone: false
+        timeOnly: true
+      date = new Date()
+      if $(this).val() isnt ''
+        [hour, minute, secod] = $(this).val().split(':')
+        date.setHours hour
+        date.setMinutes minute
+        date.setSeconds secod
+      $(this).timepicker 'setDate', date
       $(this).timepicker 'show'
 
     .on 'click', '.datetimepicker:not(.hasDatepicker)', ->
@@ -79,8 +84,8 @@ $ ->
         secondGrid: 10
         showSecond: true
         showTimezone: true
-      default_date = new Date($(this).val())
-      $(this).datetimepicker 'setDate', default_date
+      date = new Date($(this).val())
+      $(this).datetimepicker 'setDate', date
       $(this).datetimepicker 'show'
 ```
 
