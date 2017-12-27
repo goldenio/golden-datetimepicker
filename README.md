@@ -44,7 +44,7 @@ Add `datetime.js.coffee`
 
 ``` coffee
 #= require jquery-timepicker-addon
-#= require jquery.ui.datepicker-zh-TW
+#= require jquery-ui/i18n/datepicker-zh-TW
 #= require jquery-timepicker-addon/i18n/jquery-ui-timepicker-zh-TW
 
 $ ->
@@ -106,11 +106,3 @@ Set class in your input field and show as localtime.
   } %>
 ```
 Here uses [simple_form](https://github.com/plataformatec/simple_form) as form builder.
-
-## Contributing
-
-1. Fork it ( https://github.com/[my-github-username]/golden-datetimepicker/fork )
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create a new Pull Request
